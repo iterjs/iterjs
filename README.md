@@ -2,16 +2,23 @@
 
 ## Installation
 
-1. Install required extensions.
+1. Install required extensions
 
-2. Configure and install packages
+2. Install nvm and use node-18
+
+3. Configure workspace
 
 ```
 yarn dlx @yarnpkg/sdks vscode
+```
+
+4. Install dependencies
+
+```
 yarn install
 ```
 
-3. For safety reason VSCode requires you to explicitly activate the custom TS settings:
+5. For safety reason VSCode requires you to explicitly activate the custom TS settings:
 
 - Press ctrl+shift+p in a TypeScript file
 - Choose "Select TypeScript Version"
