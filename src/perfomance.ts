@@ -1,12 +1,15 @@
 import { getHeapStatistics } from 'v8';
 
-import { filter } from './filter';
 import { map } from './map';
 import { pipe } from './pipe';
+import { filter } from './filter';
 
-const data = Array.from({ length: 1000000 }, (_, i) => `${i}`);
+const ARRAY_LENGTH = 10;
+const ARRAY_DATA = Array.from({ length: ARRAY_LENGTH }, (_, i) => i);
 
-function test(data: Iterable<string>) {
+function test(data: Iterable<number>) {
+  global.gc?.();
+
   performance.clearMarks();
   performance.clearMeasures();
 
@@ -21,12 +24,33 @@ function test(data: Iterable<string>) {
   console.log(`${getHeapStatistics().used_heap_size / 1024 / 1024} MB used`);
 }
 
+console.log('Testing array performance');
+
 test(
   pipe(
-    data,
-    map((x) => x.toUpperCase()),
-    filter((x) => x.length > 10),
+    ARRAY_DATA,
+    map((x) => x ** x),
+    filter((x) => x % 2 === 0),
   ),
 );
 
-test(data.map((x) => x.toUpperCase()).filter((x) => x.length > 10));
+test(ARRAY_DATA.map((x) => x ** x).filter((x) => x % 2 === 0));
+
+console.log('Testing generator performance');
+
+const count = function* () {
+  let i = 0;
+  while (i < ARRAY_LENGTH) {
+    yield i++;
+  }
+};
+
+test(
+  pipe(
+    count(),
+    map((x) => x ** x),
+    filter((x) => x % 2 === 0),
+  ),
+);
+
+test([...count()].map((x) => x ** x).filter((x) => x % 2 === 0));
