@@ -1,4 +1,4 @@
-export class SkipWhileIterator<T> implements Iterator<T> {
+export class SkipUntilIterator<T> implements Iterator<T> {
   private _found: boolean;
 
   constructor(
@@ -14,7 +14,7 @@ export class SkipWhileIterator<T> implements Iterator<T> {
       return next;
     }
 
-    while (!next.done && this._filter(next.value)) {
+    while (!next.done && !this._filter(next.value)) {
       next = this._iterator.next();
     }
 
@@ -23,18 +23,18 @@ export class SkipWhileIterator<T> implements Iterator<T> {
   }
 }
 
-export class SkipWhileIterable<T> implements Iterable<T> {
+export class SkipUntilIterable<T> implements Iterable<T> {
   constructor(
     private readonly _iterable: Iterable<T>,
     private readonly _filter: (value: T) => boolean,
   ) {}
 
   [Symbol.iterator]() {
-    return new SkipWhileIterator(this._iterable[Symbol.iterator](), this._filter);
+    return new SkipUntilIterator(this._iterable[Symbol.iterator](), this._filter);
   }
 }
 
-export const skipWhile =
+export const skipUntil =
   <T>(fn: (value: T) => boolean) =>
   (iter: Iterable<T>) =>
-    new SkipWhileIterable(iter, fn);
+    new SkipUntilIterable(iter, fn);
