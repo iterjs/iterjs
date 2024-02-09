@@ -43,7 +43,7 @@ describe('skipWhile', () => {
 
   it('should work with non-numeric values', () => {
     const input = ['foo', 'bar', 'hello', 'world'];
-    const condition = (value: string) => value.length < 5;
+    const condition = (value: string) => value.length < 4;
     const expectedOutput = ['hello', 'world'];
 
     const result = Array.from(skipWhile(condition)(input));

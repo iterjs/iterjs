@@ -10,11 +10,7 @@ export class SkipWhileIterator<T> implements Iterator<T> {
 
   next() {
     let next = this._iterator.next();
-    if (this._found) {
-      return next;
-    }
-
-    while (!next.done && this._filter(next.value)) {
+    while (!this._found && !next.done && this._filter(next.value)) {
       next = this._iterator.next();
     }
 
