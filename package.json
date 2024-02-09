@@ -17,12 +17,12 @@
   },
   "scripts": {
     "test": "jest",
-    "format": "prettier .",
+    "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "build": "tsc",
-    "prepare": "yarn format && yarn lint && yarn test",
+    "prepare": "yarn format & yarn lint & yarn test",
     "perfomance": "ts-node ./src/perfomance.ts"
   }
 }
