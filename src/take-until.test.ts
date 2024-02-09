@@ -40,4 +40,20 @@ describe('takeUntil', () => {
 
     expect(result).toEqual(expectedOutput);
   });
+
+  it('should work with an infinite iterable', () => {
+    const count = function* () {
+      let i = 0;
+      while (true) {
+        yield i++;
+      }
+    };
+    const input = count();
+    const condition = (value: number) => value === 10;
+    const expectedOutput = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    const result = Array.from(takeUntil(condition)(input)).slice(0, 10);
+
+    expect(result).toEqual(expectedOutput);
+  });
 });
