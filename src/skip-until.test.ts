@@ -2,9 +2,9 @@ import { skipUntil } from './skip-until';
 
 describe('skipUntil', () => {
   it('should skip elements until the condition is met', () => {
-    const input = [1, 2, 3, 4, 5];
-    const condition = (value: number) => value === 3;
-    const expectedOutput = [3, 4, 5];
+    const input = [1, 2, 3, 4, 5, 6];
+    const condition = (value: number) => value % 3 === 0;
+    const expectedOutput = [3, 4, 5, 6];
 
     const result = Array.from(skipUntil(condition)(input));
 
