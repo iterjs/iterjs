@@ -4,8 +4,6 @@
  * @typeparam U The type of the elements in the mapped iterator.
  */
 export class MapIterator<T, U> implements Iterator<U> {
-  private readonly _next: IteratorResult<U>;
-
   /**
    * Creates a new instance of the MapIterator class.
    * @param _iterator The underlying iterator.
@@ -14,9 +12,7 @@ export class MapIterator<T, U> implements Iterator<U> {
   constructor(
     private readonly _iterator: Iterator<T>,
     private readonly _map: (value: T) => U,
-  ) {
-    this._next = { done: false, value: undefined } as IteratorResult<U>;
-  }
+  ) {}
 
   /**
    * Advances the iterator and returns the next element in the mapped sequence.
@@ -24,11 +20,9 @@ export class MapIterator<T, U> implements Iterator<U> {
    */
   next() {
     const { value, done } = this._iterator.next();
+    const mappedValue = done ? undefined : this._map(value);
 
-    this._next.value = done ? undefined : this._map(value);
-    this._next.done = done;
-
-    return this._next;
+    return { value: mappedValue, done } as IteratorResult<U>;
   }
 }
 
