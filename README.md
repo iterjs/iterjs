@@ -1,4 +1,4 @@
-# iterjs
+# yield it
 
 This library is a powerful tool for working with iterables in a functional and efficient way. It offers several advantages over native array methods.
 
@@ -15,7 +15,9 @@ Cons:
 
 ## Installation
 
-In development for now.
+```
+yarn add @yieldit/yieldit
+```
 
 ## Development
 

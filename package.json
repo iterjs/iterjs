@@ -1,7 +1,10 @@
 {
-  "name": "iterjs",
-  "version": "1.0.0",
+  "name": "@yieldit/yieldit",
+  "version": "0.0.1",
   "packageManager": "yarn@4.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/eslint": "^8",
     "@types/jest": "^29.5.12",
