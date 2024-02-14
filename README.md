@@ -29,14 +29,14 @@ In development for now.
 yarn install
 ```
 
-- Configure workspace
-
-```
-yarn dlx @yarnpkg/sdks vscode
-```
-
-- For safety reason VSCode requires you to explicitly activate the custom TS settings:
+- For safety reason VSCode requires you to explicitly activate the custom TS settings. It will ask you. If not try to:
 
   - Press ctrl+shift+p in a TypeScript file
   - Choose "Select TypeScript Version"
   - Pick "Use Workspace Version"
+
+- Try to reconfigure workspace if something is wrong
+
+```
+yarn dlx @yarnpkg/sdks vscode
+```
