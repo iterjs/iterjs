@@ -1,5 +1,6 @@
 {
   "name": "iterjs",
+  "version": "1.0.0",
   "packageManager": "yarn@4.1.0",
   "devDependencies": {
     "@types/eslint": "^8",
@@ -21,8 +22,18 @@
     "format:fix": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "build": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build": "npm run build:esm && npm run build:cjs",
     "prepare": "yarn format & yarn lint & yarn test",
     "perfomance": "ts-node ./src/perfomance.ts"
-  }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }
