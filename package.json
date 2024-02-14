@@ -30,7 +30,7 @@
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "npm run build:esm && npm run build:cjs",
     "prepare": "yarn format & yarn lint & yarn test",
-    "perfomance": "ts-node ./src/perfomance.ts"
+    "docs": "typedoc"
   },
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
