@@ -44,6 +44,9 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
+      - name: Run tests
+        run: yarn test
+
       - name: Generate TypeDoc Documentation
         run: yarn docs
 

@@ -11,12 +11,56 @@ Pros:
 
 Cons:
 
-- **Extremely slow compared to optimized native array methods**: While this library offers powerful functionality, it may have slower performance compared to native array methods. It's important to consider the performance implications when using this library in performance-critical scenarios.
+- **Extremely slow compared to optimized native array methods**: While this library offers powerful functionality, it may have slower performance compared to native array methods. DO NOT USE this library in performance-critical scenarios.
 
 ## Installation
 
 ```
 yarn add @yieldit/yieldit
+```
+
+## Usage
+
+### Documentation
+
+Read [documentation](https://yieldit.github.io/yieldit/).
+
+### Simple arrays
+
+It's better to use native array methods instead in performance-critical scenarios.
+
+```ts
+import { pipe, map, filter } from '@yieldit/yieldit';
+
+const input = [1, 2, 3, 4, 5];
+const result = pipe(
+  input,
+  filter((value: number) => value % 2 === 0),
+  map((value: number) => value * 2),
+);
+console.log([...result]); // [4, 8]
+```
+
+### Infinite iterables
+
+This library is the perfect solution for infinite iterables.
+
+```ts
+import { pipe, map } from '@yieldit/yieldit';
+
+const count = function* () {
+  let i = 0;
+  while (true) {
+    yield i++;
+  }
+};
+const input = count();
+const result = pipe(
+  input,
+  takeWhile((value: number) => value < 4),
+  map((value: number) => value * 2),
+);
+console.log([...result]); // [0, 2, 4, 6]
 ```
 
 ## Development
