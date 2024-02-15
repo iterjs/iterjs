@@ -1,4 +1,4 @@
-name: Run Checks (Unit Tests, Linting, etc.)
+name: Check
 
 on:
   push:

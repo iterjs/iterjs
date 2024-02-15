@@ -1,8 +1,8 @@
-name: Deploy Docs to GitHub Pages
+name: Docs
 
 on:
   workflow_run:
-    workflows: ['.github/workflows/check.yml']
+    workflows: [Check]
     branches:
       - version/v*
     types:

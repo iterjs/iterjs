@@ -1,8 +1,8 @@
-name: Build and Publish Package to NPM Registry
+name: Publish
 
 on:
   workflow_run:
-    workflows: ['.github/workflows/check.yml']
+    workflows: [Check]
     branches:
       - version/v*
     types:
